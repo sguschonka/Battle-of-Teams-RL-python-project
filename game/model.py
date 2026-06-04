@@ -18,7 +18,8 @@ class FighterModel:
 
 
 class TeamModel:
-    def __init__(self, fighters: list[FighterModel]):
+    def __init__(self, fighters: list[FighterModel], name: str):
+        self._name = name
         self._size = 3  # constraint to implement simple RL
         self._fighters = fighters
         self._alive_counter = sum(1 for f in fighters if f.alive)
@@ -26,3 +27,10 @@ class TeamModel:
 
     def alive_counter_update(self):
         self._alive_counter = sum(1 for f in self._fighters if f.alive)
+
+team_zalupenko = TeamModel(fighters=[FighterModel("Залупенко Михаил", 100),
+                          FighterModel("Залупенко Михаил", 100),
+                          FighterModel("Залупенко Михаил", 100),
+                          ], name="Команда Залупенко")
+
+print(team_zalupenko._name)
