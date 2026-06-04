@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "battleofteams"
+version = "0.1.0"
+description = "The project is a reworking of a coursework completed by a first-year student, originally in C, with the addition of a RL algorithm."
+authors = ["Alexander Klepikov <sklepikov2007@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ruff = "^0.15.15"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
