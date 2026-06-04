@@ -28,9 +28,10 @@ class TeamModel:
     def alive_counter_update(self):
         self._alive_counter = sum(1 for f in self._fighters if f.alive)
 
-team_zalupenko = TeamModel(fighters=[FighterModel("Залупенко Михаил", 100),
-                          FighterModel("Залупенко Михаил", 100),
-                          FighterModel("Залупенко Михаил", 100),
+team_zalupenko = TeamModel(fighters=[FighterModel("Залупенко Михаил", 50),
+                          FighterModel("Залупенко Александр", 25),
+                          FighterModel("Залупенко Антон", 25),
                           ], name="Команда Залупенко")
 
 print(team_zalupenko._name)
+print([f._name for f in team_zalupenko._fighters])
