@@ -6,8 +6,10 @@ authors = ["Alexander Klepikov <sklepikov2007@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-ruff = "^0.15.15"
+python = ">=3.12,<3.14"
+ruff = "==0.15.16"
+torch = "==2.12.0"
+torchvision = "==0.27.0"
 
 
 [build-system]

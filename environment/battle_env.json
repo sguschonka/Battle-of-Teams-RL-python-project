@@ -1,0 +1,48 @@
+{
+  "battle_of_teams_reinforce": {
+    "agent": {
+      "name": "REINFORCE",
+      "algorithm": {
+        "name": "Reinforce",
+        "action_pdtype": "Categorical",
+        "action_policy": "default",
+        "gamma": 0.99,
+        "entropy_coef": 0.05,
+        "training_epoch": 4,
+        "training_batch_iter": 1,
+        "training_frequency": 32,
+        "training_start_step": 64,
+        "center_return": true
+      },
+      "memory": {
+        "name": "OnPolicyBatchReplay"
+      },
+      "net": {
+        "type": "MLPNet",
+        "hid_layers": [32, 32],
+        "hid_layers_activation": "tanh",
+        "optim_spec": {
+          "name": "Adam",
+          "lr": 0.00025
+        },
+        "gpu": "auto"
+      }
+    },
+    "env": {
+      "name": "BattleOfTeams-v0",
+      "max_frame": 500000,
+      "max_t": 500,
+      "num_envs": 1,
+      "normalize_obs": true,
+      "normalize_reward": true
+    },
+    "meta": {
+      "max_session": 2,
+      "max_trial": 2,
+      "distributed": false,
+      "log_frequency": 500,
+      "eval_frequency": 500,
+      "rigorous_eval": 0
+    }
+  }
+}

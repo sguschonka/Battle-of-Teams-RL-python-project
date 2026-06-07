@@ -1,42 +1,73 @@
+from dataclasses import dataclass, field
+
+
+@dataclass()
+class FighterState:
+    name: str = "fighter"
+    strength: int = 0
+    base_strength: int = 1
+    kills: int = 0
+    alive: bool = True
+
+
+@dataclass()
+class TeamState:
+    name: str = "Command"
+    size: int = 3  # constraint to implement simple RL
+    fighters: list = field(default_factory=list)
+    filename = None
+
+
 class FighterModel:
-    def __init__(self, name: str, base_strength: int):
-        self._name = name
-        self._strength = base_strength
-        self._base_strength = base_strength
-        self._kills = 0
-        self._alive = True
+    def __init__(self):
+        self.state = FighterState()
 
     @property  # getters and setters
     def alive(self):
-        return self._alive
+        return self.state.alive
 
     def take_damage(self, damage: int):
-        self._strength -= damage
-        if self._strength <= 0:
-            self._alive = False
-            self._strength = 0
+        self.state.strength -= damage
+        if self.state.strength <= 0:
+            self.state.alive = False
+            self.state.strength = 0
 
 
 class TeamModel:
     def __init__(self, fighters: list[FighterModel], name: str):
-        self._name = name
-        self._size = 3  # constraint to implement simple RL
-        self._fighters = fighters
-        self._alive_counter = sum(1 for f in fighters if f.alive)
-        self._filename = None
+        self.state = TeamState(name=name, fighters=fighters)
+        self.validate_team_strength()
 
     def alive_counter_update(self):
-        self._alive_counter = sum(1 for f in self._fighters if f.alive)
+        return sum(1 for f in self.state.fighters if f.state.alive)
+
+    def validate_team_strength(self):
+        total = sum(f.state.base_strength for f in self.state.fighters)
+        if total > 30:
+            raise ValueError("Превышена суммарная сила команды")
 
 
-team_zalupenko = TeamModel(
-    fighters=[
-        FighterModel("Залупенко Михаил", 50),
-        FighterModel("Залупенко Александр", 25),
-        FighterModel("Залупенко Антон", 25),
-    ],
-    name="Команда Залупенко",
-)
+try:
+    team_zalupenko = TeamModel(
+        fighters=[
+            FighterModel(),
+            FighterModel(),
+            FighterModel(),
+        ],
+        name="Команда Залупенко",
+    )
 
-print(team_zalupenko._name)
-print([f._name for f in team_zalupenko._fighters])
+    team_zalupenko.state.fighters[0].state.name = "Дима Залупенко"
+    team_zalupenko.state.fighters[1].state.name = "Дарья Залупенко"
+    team_zalupenko.state.fighters[2].state.name = "Саша Залупенко"
+
+    team_zalupenko.state.fighters[0].state.base_strength = 55
+    team_zalupenko.state.fighters[1].state.base_strength = 2
+    team_zalupenko.state.fighters[2].state.base_strength = 8
+
+    team_zalupenko.validate_team_strength()
+except ValueError as e:
+    print(e)
+
+print(team_zalupenko.state.name)
+print([f.state for f in team_zalupenko.state.fighters])
