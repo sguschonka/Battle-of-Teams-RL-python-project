@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26405182-2510-4013-9144-5a21ba27d59a" name="Changes" comment="start to develop project in MVC">
+      <change afterPath="$PROJECT_DIR$/battle_of_teams.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/ai_player.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/ai_player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
