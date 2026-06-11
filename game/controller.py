@@ -3,7 +3,8 @@ from pathlib import Path
 from game.model import BattleModel
 from game.ai_player import AIPlayer
 
-MODEL_PATH = Path(r'D:\projects\python\BattleOfTeams\environment\BattleOfTeams-v1.pt')
+current_dir = Path(__file__).parent
+MODEL_PATH = current_dir / 'environment' / 'BattleOfTeams-v1.pt'
 
 class GameController:
     def __init__(self, root, view):
@@ -25,10 +26,14 @@ class GameController:
                 checkpoint_path=MODEL_PATH,
                 obs_rms_path=None
             )
-            self.current_player = 'agent'
+            # Случайный выбор: True -> агент, False -> игрок
+            if random.choice([True, False]):
+                self.current_player = 'agent'
+            else:
+                self.current_player = 'player'
         else:  # pvp
             self.battle = BattleModel(team1, team2)
-            self.current_player = 'player1'
+            self.current_player = random.choice(['player1', 'player2'])
 
         self.view.create_game_screen(self.battle.team_agent, self.battle.team_player, self.current_player)
 

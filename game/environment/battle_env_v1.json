@@ -1,0 +1,68 @@
+{
+  "agent": {
+    "name": "REINFORCE",
+    "algorithm": {
+      "name": "Reinforce",
+      "action_pdtype": "Categorical",
+      "action_policy": "default",
+      "gamma": 0.99,
+      "entropy_coef_spec": {
+        "name": "linear_decay",
+        "start_val": 0.05,
+        "end_val": 0.01,
+        "start_step": 0,
+        "end_step": 200000
+      },
+      "training_frequency": 256,
+      "center_return": true,
+      "explore_var_spec": null
+    },
+    "memory": {
+      "name": "OnPolicyBatchReplay"
+    },
+    "net": {
+      "type": "MLPNet",
+      "hid_layers": [
+        128,
+        128
+      ],
+      "hid_layers_activation": "tanh",
+      "optim_spec": {
+        "name": "Adam",
+        "lr": 0.002
+      },
+      "gpu": "auto"
+    }
+  },
+  "env": {
+    "name": "BattleOfTeams-v0",
+    "max_frame": 1000000,
+    "max_t": null,
+    "num_envs": 4,
+    "normalize_obs": true,
+    "normalize_reward": true
+  },
+  "meta": {
+    "max_session": 2,
+    "max_trial": null,
+    "distributed": false,
+    "eval_frequency": 5000,
+    "log_frequency": 5000,
+    "rigorous_eval": 0,
+    "experiment": 0,
+    "trial": 0,
+    "session": -1,
+    "cuda_offset": 0,
+    "resume": false,
+    "experiment_ts": "2026_06_09_063752",
+    "prepath": "data/battle_of_teams_reinforce_2026_06_09_063752/battle_of_teams_reinforce_t0",
+    "git_sha": "96be3938d3239edb595f41190ae2ae035d83c65a",
+    "random_seed": null,
+    "predir": "data/battle_of_teams_reinforce_2026_06_09_063752",
+    "graph_prepath": "data/battle_of_teams_reinforce_2026_06_09_063752/graph/battle_of_teams_reinforce_t0",
+    "info_prepath": "data/battle_of_teams_reinforce_2026_06_09_063752/info/battle_of_teams_reinforce_t0",
+    "log_prepath": "data/battle_of_teams_reinforce_2026_06_09_063752/log/battle_of_teams_reinforce_t0",
+    "model_prepath": "data/battle_of_teams_reinforce_2026_06_09_063752/model/battle_of_teams_reinforce_t0"
+  },
+  "name": "battle_of_teams_reinforce"
+}
