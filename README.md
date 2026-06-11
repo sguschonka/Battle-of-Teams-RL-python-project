@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.12+-red.svg)](https://pytorch.org/)
 [![SLM‑Lab](https://img.shields.io/badge/SLM--Lab-RL--framework-8A2BE2)](https://github.com/kengz/SLM-Lab)
 
 **Пошаговая тактическая игра**, в которой две команды по три бойца сражаются друг с другом. Вы можете играть против **искусственного интеллекта (PvE)**, обученного с помощью **REINFORCE** (Policy Gradient), или сразиться с другом в режиме **PvP**.
