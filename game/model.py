@@ -3,11 +3,13 @@ from dataclasses import dataclass
 from typing import List
 import random
 
+
 @dataclass
 class Fighter:
     name: str
     strength: int
     alive: bool = True
+
 
 @dataclass
 class Team:
@@ -23,25 +25,32 @@ class Team:
     def is_defeated(self) -> bool:
         return self.alive_count() == 0
 
+
 class BattleModel:
     def __init__(self, team1: Team, team2: Team):
-        self.team_agent = team1   # AI или первый игрок
+        self.team_agent = team1  # AI или первый игрок
         self.team_player = team2  # человек или второй игрок
         self.winner = None
 
     @staticmethod
-    def create_random_team(name: str, total_strength: int = 100, num_fighters: int = 3) -> Team:
+    def create_random_team(
+        name: str, total_strength: int = 100, num_fighters: int = 3
+    ) -> Team:
         strengths = []
         remaining = total_strength
         for i in range(num_fighters - 1):
-            s = random.randint(1, max(1, remaining - (num_fighters - i -1)))
+            s = random.randint(1, max(1, remaining - (num_fighters - i - 1)))
             strengths.append(s)
             remaining -= s
         strengths.append(remaining)
-        fighters = [Fighter(name=f"Боец {i+1}", strength=s) for i, s in enumerate(strengths)]
+        fighters = [
+            Fighter(name=f"Боец {i + 1}", strength=s) for i, s in enumerate(strengths)
+        ]
         return Team(name=name, fighters=fighters)
 
-    def execute_round(self, attacker_team: Team, defender_team: Team, action: int) -> float | tuple[int, int]:
+    def execute_round(
+        self, attacker_team: Team, defender_team: Team, action: int
+    ) -> float | tuple[int, int]:
         num_f = len(attacker_team.fighters)
         attacker_idx = action // num_f
         defender_idx = action % num_f
@@ -63,7 +72,7 @@ class BattleModel:
         defense_val = random.randint(0, defender.strength)
         min_val = min(attack_val, defense_val)
 
-        if attack_val==defense_val:
+        if attack_val == defense_val:
             if random.random() < 0.5:
                 attacker.strength += min_val
                 defender.strength -= min_val
